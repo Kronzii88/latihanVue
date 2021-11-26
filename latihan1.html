@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan 1</title>
+
+    <style>
+      body {
+        margin: 5%;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <img src="https://vuejs.org/images/logo.svg" width="80" />
+        <!-- menjalankan ternary operator -->
+        <h1 v-once>Haloo {{ isActive ? name : age }}</h1>
+        <h1 v-text="isActive"></h1>
+        <h1 v-html="link"></h1>
+        <!-- menjalankan method  -->
+        <h1>{{ number }}</h1>
+        <p>{{ age }}</p>
+        <p>Framework progressive dari javascript untuk bagian frontend</p>
+        <p>Bilangan ini adalah bilangan {{ oddEven }}</p>
+      </header>
+
+      <footer id="footer">
+        <p>copyright Kronzii88</p>
+      </footer>
+    </div>
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+      const member = {
+        name: "Ezarofi",
+        age: 23,
+        isActive: true,
+        qty: 5,
+        number: 3,
+        link: '<a href="#">Kronzii88</a>',
+      };
+      const vm = new Vue({
+        el: "#app",
+        data: member,
+        methods: {
+          getName: function () {
+            return `Hello ${this.name}`;
+          },
+          updateName: function (newName) {
+            this.name = newName;
+            return this.getName();
+          },
+        },
+        computed: {
+          totalBayar: function () {
+            return this.qty * 20000;
+          },
+          oddEven: function () {
+            return this.qty % 2 == 0 ? "Genap" : "Ganjil";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

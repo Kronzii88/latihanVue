@@ -1,0 +1,4 @@
+new Vue()   : digunakan untuk inisiasi vue (vue merupakan object disini yang mempunyai banyak method/fungsi yang bisa digunakan)
+el  : untuk mendefinisikan element yang akan dimodifikasi
+data    : digunakan untuk mendefinisikan data yang akan digunakan untuk ditampilakan dalam web view/ diolah lagi
+methods : digunakan untuk mendefinisikan method/function yang kita buat
