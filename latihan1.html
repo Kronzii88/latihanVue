@@ -67,6 +67,10 @@
         <ul>
           <li v-for="k in courses">{{ k }}</li>
         </ul>
+
+        <ul>
+          <li v-for="item in oddNumber(numArray)">{{ item }}</li>
+        </ul>
       </header>
 
       <footer id="footer">
@@ -87,6 +91,7 @@
         image: "https://vuejs.org/images/logo.svg",
         menu: "home",
         courses: ["golang", "javascript", "nodejs"],
+        numArray: [1, 2, 3, 4, 5, 6],
       };
 
       const vm = new Vue({
@@ -105,6 +110,11 @@
           },
           changeMenu: function (choose) {
             this.menu = choose;
+          },
+          oddNumber: function (numData) {
+            return numData.filter((i) => {
+              return i % 2 == 0;
+            });
           },
         },
         computed: {
