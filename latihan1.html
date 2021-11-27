@@ -11,21 +11,62 @@
         margin: 5%;
         font-family: sans-serif;
       }
+
+      .active {
+        background: salmon;
+        padding: 5px;
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <header>
-        <img src="https://vuejs.org/images/logo.svg" width="80" />
+        <!-- attribute binding menggunakan v-bind:(attribute) atau :(attribute) -->
+        <img :src="image" width="80" />
+
         <!-- menjalankan ternary operator -->
-        <h1 v-once>Haloo {{ isActive ? name : age }}</h1>
+        <h1>Haloo {{ isActive ? name : age }}</h1>
+
         <h1 v-text="isActive"></h1>
         <h1 v-html="link"></h1>
+
         <!-- menjalankan method  -->
         <h1>{{ number }}</h1>
+
+        <!-- events onclick pada vue -->
+        <button v-on:click="handleClick">Tambah</button>
+
         <p>{{ age }}</p>
         <p>Framework progressive dari javascript untuk bagian frontend</p>
         <p>Bilangan ini adalah bilangan {{ oddEven }}</p>
+
+        <!-- class binding exercise -->
+        <button
+          :class="{active: menu === 'home'}"
+          v-on:click="changeMenu('home')"
+        >
+          Home
+        </button>
+        <button
+          :class="{active: menu === 'about'}"
+          v-on:click="changeMenu('about')"
+        >
+          About
+        </button>
+        <button
+          :class="{active: menu === 'blog'}"
+          v-on:click="changeMenu('blog')"
+        >
+          Blog
+        </button>
+
+        <!-- two way data binding -->
+        <input type="text" v-model="name" />
+
+        <!-- perulangan v-for -->
+        <ul>
+          <li v-for="k in courses">{{ k }}</li>
+        </ul>
       </header>
 
       <footer id="footer">
@@ -41,9 +82,13 @@
         age: 23,
         isActive: true,
         qty: 5,
-        number: 3,
+        number: 2,
         link: '<a href="#">Kronzii88</a>',
+        image: "https://vuejs.org/images/logo.svg",
+        menu: "home",
+        courses: ["golang", "javascript", "nodejs"],
       };
+
       const vm = new Vue({
         el: "#app",
         data: member,
@@ -55,13 +100,19 @@
             this.name = newName;
             return this.getName();
           },
+          handleClick: function () {
+            return this.number++;
+          },
+          changeMenu: function (choose) {
+            this.menu = choose;
+          },
         },
         computed: {
           totalBayar: function () {
             return this.qty * 20000;
           },
           oddEven: function () {
-            return this.qty % 2 == 0 ? "Genap" : "Ganjil";
+            return this.number % 2 === 0 ? "Genap" : "Ganjil";
           },
         },
       });
